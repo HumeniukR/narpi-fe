@@ -1,0 +1,56 @@
+.Panel {
+    /*border: solid 2px #ccc;*/
+    background: white;
+    min-width: 200px;
+    box-shadow: 5px 5px 14px #c5c5c5;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px;
+
+}
+
+.PanelTitle {
+    position: absolute;
+    background: white;
+    padding: 0 5px;
+    margin: -21px 5px;
+    /*border: solid 2px #ccc;*/
+    box-shadow: 0px -5px 8px #efefef;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #636262;
+    z-index: 99;
+}
+
+.Panel.ActivePannel {
+    left: 0;
+}
+
+.Active {
+    transform: translateX(0);
+}
+
+@media screen and (max-width: 414px) {
+    .Panel {
+        margin: 50px 0;
+        box-shadow: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+        left: -100%;
+        top: 10%;
+    }
+
+    .PanelTitle {
+        position: relative;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        box-shadow: none;
+        text-align: center;
+    }
+
+    .Active {
+        transform: translateX(100%);
+        transition: transform .3s;
+    }
+}

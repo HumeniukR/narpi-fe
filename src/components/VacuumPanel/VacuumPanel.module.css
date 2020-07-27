@@ -1,0 +1,12 @@
+.VacuumCommand {
+    margin-top: 15px;
+}
+
+.VacuumMode {
+    padding: 10px 0;
+}
+
+.Radio {
+    display: inline-block;
+    width: 50%;
+}

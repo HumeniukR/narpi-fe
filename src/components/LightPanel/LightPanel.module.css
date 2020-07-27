@@ -1,0 +1,14 @@
+.LightPanel ul {
+    margin-top: 30px;
+}
+
+.LightPanel li {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 414px) {
+    .LightPanel {
+      max-width: 270px;
+    }
+
+}

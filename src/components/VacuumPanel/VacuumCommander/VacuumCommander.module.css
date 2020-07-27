@@ -1,0 +1,14 @@
+.VacuumCommander {
+    border: solid 2px #ccc;
+    border-radius: 5px;
+    padding: 0 10px 10px 10px;
+    margin-bottom: 10px;
+    height: 145px;
+}
+
+.CommandKey {
+    margin: auto;
+    margin-top: 10px;
+    display: grid;
+    width: 180px;
+}

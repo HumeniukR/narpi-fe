@@ -1,0 +1,22 @@
+.VacuumDriver {
+    width: 193px;
+    border: solid 2px #ccc;
+    border-radius: 5px;
+    padding: 15px 10px 10px 15px;
+    margin: auto;
+    margin-bottom: 10px;
+    height: 145px;
+}
+
+.CommandKey:first-child {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: -6px;
+    width: 56px;
+}
+
+.CommandKey:not(:first-child) {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 3px;
+}

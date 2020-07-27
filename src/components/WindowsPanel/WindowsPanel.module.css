@@ -1,0 +1,26 @@
+.WindowsPanel {
+    padding: 0 10px;
+}
+
+.WindowNumber {
+    width: 20%;
+}
+.WindowControl {
+    width: 80%;
+}
+
+.WindowNumber, .WindowControl {
+    display: inline-block;
+}
+
+.WindowBlock {
+    margin-top: -15px;
+}
+
+.NotActive {
+    opacity: 0.5;
+}
+
+.NotActive input {
+    cursor: not-allowed;
+}

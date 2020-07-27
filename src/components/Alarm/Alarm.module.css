@@ -1,0 +1,13 @@
+.Alarm {
+    padding: 0 15px;
+    margin: 10px;
+    line-height: 3rem;
+}
+
+.Alarm .danger span {
+    background: rgba(253,174,174,1);
+}
+
+.Alarm .danger span:after {
+    background: indianred;
+}
