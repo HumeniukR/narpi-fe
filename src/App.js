@@ -1,15 +1,17 @@
 import React from 'react';
-import {Route, Switch, BrowserRouter} from 'react-router-dom'
+import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 import Layout from './hoc/Layout/Layout'
 import Home from "./containers/Home/Home";
 import Auth from "./containers/Auth/Auth";
 
-function App() {
+function App(props) {
   return (
       <BrowserRouter>
           <Layout>
               <Switch>
                   <Route path={'/login'} component={Auth}/>
+                  {!props.isLoggedIn && <Redirect to={'/login'}/>}
                   <Route path={'/'} exact component={Home}/>
               </Switch>
           </Layout>
@@ -17,4 +19,10 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        isLoggedIn: !!state.auth.token
+    }
+}
+
+export default connect(mapStateToProps)(App);

@@ -7,13 +7,15 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import rootReducer from './store/reducers/rootReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-
+import setAuthInterceptors from './interceptors/authInterceptor'
 
 const composeEnhancers =
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         }) : compose;
+
+setAuthInterceptors()
 
 const store = createStore(
     rootReducer,
