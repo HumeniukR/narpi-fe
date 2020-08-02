@@ -17,5 +17,9 @@ export const FETCH_LOGS_START = 'FETCH_LOGS_START'
 export const FETCH_LOGS_SUCCESS = 'FETCH_LOGS_SUCCESS'
 export const FETCH_LOGS_ERROR = 'FETCH_LOGS_ERROR'
 
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_FAILED = 'AUTH_FAILED'
+export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+
 
 
