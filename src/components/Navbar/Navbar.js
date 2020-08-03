@@ -2,17 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {NavLink, withRouter}  from 'react-router-dom'
-import {login, logout} from "../../store/actions/auth";
+import {logout} from "../../store/actions/auth";
 import styles from './Navbar.module.css'
 import M from 'materialize-css';
 
 import Alarm from '../Alarm/Alarm'
 
 class Navbar extends React.Component {
-
-    componentDidMount(){
-        M.Sidenav.init(this.sidenav);
-    }
 
     logoutHandler(e) {
         e.preventDefault()
@@ -21,6 +17,7 @@ class Navbar extends React.Component {
     }
 
     render() {
+        M.Sidenav.init(this.sidenav);
         return (
             <React.Fragment>
                 {this.props.isLoggedIn
@@ -68,9 +65,9 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatck) {
+function mapDispatchToProps(dispatch) {
     return {
-        logout: () => dispatck(logout())
+        logout: () => dispatch(logout())
     }
 }
 

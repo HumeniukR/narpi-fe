@@ -1,41 +1,19 @@
 import axios from 'axios'
 
 function setAuthInterceptors() {
-    // Add a request interceptor
     axios.interceptors.request.use(function (config) {
-        // Do something before request is sent
-        console.log('config REQ', config)
         const token = localStorage.getItem('token')
         config.headers.authorization = token;
         return config;
     }, function (error) {
-        // Do something with request error
         return Promise.reject(error);
     });
-/*
-    // Add a response interceptor
-    axios.interceptors.response.use(function (response) {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        // Do something with response data
-        console.log('response', response)
-        return response;
-    }, function (error) {
-
-        if (error.config && error.response && error.response.status === 401) {
-            return getNewAccessToken().then((token) => {
-                console.log('TTT: ', token)
-                error.config.headers.authorization = token
-                return axios(config);
-            });
-        }
-        return Promise.reject(error);
-    });*/
 }
 
 axios.interceptors.response.use(r => {
-    console.log('config RES', r)
     return r
 }, async error => {
+    relogin(error.response.status)
     if (
         !localStorage.getItem('refreshToken') ||
         error.response.status !== 401 ||
@@ -44,12 +22,10 @@ axios.interceptors.response.use(r => {
         return Promise.reject(error)
     }
 
-         return getNewAccessToken().then((token) => {
-             error.config.headers.authorization = `Bearer ${token}`
-             return axios({...error.config, called: true})
-         });
-
-
+    return getNewAccessToken().then((token) => {
+        error.config.headers.authorization = `Bearer ${token}`
+        return axios({...error.config, called: true})
+    });
 })
 
 
@@ -66,6 +42,14 @@ async function getNewAccessToken() {
         })
     } else {
         return Promise.reject('Refresh Token is empty');
+    }
+}
+
+function relogin(statusCode) {
+    if(statusCode === 403 && window.location.pathname !== '/login') {
+        localStorage.removeItem('token')
+        localStorage.removeItem('refreshToken')
+        window.location.pathname = '/login'
     }
 }
 

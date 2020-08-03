@@ -13,6 +13,7 @@ function App(props) {
                   <Route path={'/login'} component={Auth}/>
                   {!props.isLoggedIn && <Redirect to={'/login'}/>}
                   <Route path={'/'} exact component={Home}/>
+                  <Route render={() => (<h1>Not found: 404</h1>)}/>
               </Switch>
           </Layout>
       </BrowserRouter>

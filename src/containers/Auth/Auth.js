@@ -26,16 +26,19 @@ class Auth extends React.Component {
 
     v = new Validator()
 
+    onChangeHandler(input) {
+        const state = {...this.state}
+        state[input.id].value = input.value
+        this.setState(state)
+    }
+
     onBlurHandler(input) {
         const id = input.id
-        const value = input.value
         const state = {...this.state}
-        const {isValid, messages} = this.v.validate(id, value)
-        state[id].value = value
+        const {isValid, messages} = this.v.validate(id, input.value)
         state[id].isValid = isValid
         state[id].validationMessages = messages
         this.setState(state)
-        window.s =state
     }
 
     async loginHandler (){
@@ -52,24 +55,35 @@ class Auth extends React.Component {
             <div className={styles.Auth}>
                 <h4>Login page</h4>
                 <div className="row">
-                    <form className="col s12" onSubmit={e => e.preventDefault()} >
+                    <form className="col s12" onSubmit={e => e.preventDefault()}>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="email" type="email" className="validate" onBlur={e => this.onBlurHandler(e.target)}/>
+                                <input id="email" type="email" className="validate"
+                                       onBlur={e => this.onBlurHandler(e.target)}
+                                       onChange={e=> this.onChangeHandler(e.target)}
+                                />
                                 <label htmlFor="email">Email</label>
                                 {this.renderValidationErrors(this.state.email.validationMessages)}
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="password" type="password" className="validate" onBlur={e => this.onBlurHandler(e.target)}/>
+                                <input id="password" type="password" className="validate"
+                                       onBlur={e => this.onBlurHandler(e.target)}
+                                       onChange={e=> this.onChangeHandler(e.target)}
+                                />
                                 <label htmlFor="password">Password</label>
                                 {this.renderValidationErrors(this.state.password.validationMessages)}
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <button className="btn waves-effect waves-light" onClick={() => this.loginHandler()}>Login</button>
+                                <button className="btn waves-effect waves-light"
+                                        type="submit"
+                                        onClick={() => this.loginHandler()}
+                                >
+                                    Login
+                                </button>
                             </div>
                         </div>
                     </form>

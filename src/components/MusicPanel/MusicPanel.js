@@ -5,8 +5,6 @@ import styles from './MusicPanel.module.css'
 
 import spectrum from './mspectrum.gif';
 import spectrumStatic from './mspectrum-static.jpg';
-
-import config from "../../containers/Home/config";
 import {sendPlayerCommand, fetchPlaylist} from "../../store/actions/player";
 
 class MusicPlayer extends React.Component {
