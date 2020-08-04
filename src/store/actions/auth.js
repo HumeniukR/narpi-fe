@@ -1,18 +1,21 @@
 import axios from 'axios'
 import {AUTH_LOGOUT, AUTH_SUCCESS, AUTH_FAILED} from './actionTypes';
+import {addMessage} from './message'
 
 const URL = process.env.REACT_APP_HOME_API
 
 export function login(email, password) {
     return async dispatch => {
-        const response = await axios.post(`${URL}/auth/login`, {email, password})
-        if(response.data && response.data.token) {
+        try {
+            const response = await axios.post(`${URL}/auth/login`, {email, password})
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('refreshToken', response.data.refreshToken)
             dispatch(authSuccess(response.data.token))
-        } else {
-            dispatch(authFailde(response.data))
+        } catch (e) {
+            dispatch(addMessage(`Wrong email or password`, 'error'))
+            dispatch(authFailde())
         }
+
     }
 }
 

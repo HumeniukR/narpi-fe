@@ -12,6 +12,7 @@ import {
     sendWindowPosition,
     sendVacuumCommand
 } from "../../store/actions/microcontroller";
+import fetchSystemState from "../../store/actions/systemState"
 
 class Home extends React.Component {
 
@@ -26,6 +27,10 @@ class Home extends React.Component {
         {icon: 'play_circle_filled', isActive: false},
         {icon: 'import_contacts', isActive: false}
     ]
+
+    componentDidMount() {
+        this.props.fetchSystemState()
+    }
 
     setActivePannel = number => {
         this.mobileNavButtons[this.state.activeMobilePanel].isActive = false
@@ -106,6 +111,7 @@ function mapDispatchToProps(dispatch) {
         setWindowPosition: (number, percent) => dispatch(setWindow(number, percent)),
         sendWindowPosition: (number, percent) => dispatch(sendWindowPosition(number, percent)),
         sendVacuumCommand: (command) => dispatch(sendVacuumCommand(command)),
+        fetchSystemState: () => dispatch(fetchSystemState())
     }
 }
 

@@ -6,10 +6,6 @@ import {sendAlarmCommand, fetchAlarmStatus} from "../../store/actions/microcontr
 class Alarm extends Component {
     alarmClasses = `switch ${classes.Alarm}`
 
-    componentDidMount() {
-         this.props.fetchAlarmStatus()
-    }
-
     render() {
         return(
                 <div className={this.alarmClasses}>
@@ -33,8 +29,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendAlarmCommand: (value) => dispatch(sendAlarmCommand(value)),
-        fetchAlarmStatus: () => dispatch(fetchAlarmStatus())
+        sendAlarmCommand: (value) => dispatch(sendAlarmCommand(value))
     }
 }
 

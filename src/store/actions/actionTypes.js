@@ -21,5 +21,8 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAILED = 'AUTH_FAILED'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
+export const SET_LIGHT_STATE = 'SET_LIGHT_STATE'
+export const SET_WINDOWS_STATE = 'SET_WINDOWS_STATE'
 
-
+export const ADD_MESSAGE = 'ADD_MESSAGE'
+export const REMOVE_MESSAGE = 'REMOVE_MESSAGE'

@@ -5,7 +5,7 @@ import node from './imgs/node.png'
 import react from './imgs/react.png'
 import arduino from './imgs/arduino.png'
 
-export default props => {
+export default () => {
     const classes = ["page-footer", "blue-grey", "darken-3", styles.Footer]
     return (
         <footer className={classes.join(" ")}>

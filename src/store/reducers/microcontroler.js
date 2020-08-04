@@ -1,4 +1,11 @@
-import {GET_ALARM_STATUS, TOGGLE_ALARM, SET_WINDOW, SWITCH_LIGHT, VACUUM_SEND_COMMAND} from "../actions/actionTypes";
+import {
+    GET_ALARM_STATUS,
+    TOGGLE_ALARM,
+    SET_WINDOW,
+    SWITCH_LIGHT,
+    VACUUM_SEND_COMMAND,
+    SET_LIGHT_STATE, SET_WINDOWS_STATE
+} from "../actions/actionTypes";
 
 const initialState = {
     rooms: [
@@ -20,7 +27,6 @@ const initialState = {
         status: "ready", // inprogress/done/pause/error
     },
     alarm: {armed: false, activated: false},
-
 }
 
 export default function microcontroller(state = initialState, action) {
@@ -42,6 +48,10 @@ export default function microcontroller(state = initialState, action) {
         case VACUUM_SEND_COMMAND:
            const vacuum = {lastCommand: action.command}
             return {...state, vacuum}
+        case SET_LIGHT_STATE:
+            return {...state, rooms: action.payload}
+        case SET_WINDOWS_STATE:
+            return {...state, windows: action.payload}
        default:
             return state
     }

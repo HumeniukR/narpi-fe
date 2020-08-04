@@ -1,5 +1,6 @@
 import {PLAYER_PLAY, PLAYER_PAUSE, PLAYER_SET_CURRENT_TRACK, FETCH_PLAYLIST} from './actionTypes'
 import axios from "axios/index";
+import {addMessage} from './message'
 
 const URL = process.env.REACT_APP_HOME_API
 
@@ -9,9 +10,8 @@ export function fetchPlaylist() {
             const playerRes = await axios.get(`${URL}/player/playlist`)
             dispatch(setPlayList(playerRes.data.playlist))
             dispatch(setCurrentTrack(playerRes.data.currentTrack.id))
-            //console.log('fetchPlaylist: ', playerRes)
         } catch (e) {
-            console.error('Error: ', e)
+            dispatch(addMessage(`Playlist not loaded`, 'error'))
         }
     }
 }
@@ -23,7 +23,6 @@ export function sendPlayerCommand(command, trackNumber) {
         } else if(command === 'pause') {
             dispatch(pause())
         }
-
         try {
             const playerRes = await axios.post(`${URL}/player`, {
                 command,
@@ -31,7 +30,7 @@ export function sendPlayerCommand(command, trackNumber) {
             })
             dispatch(setCurrentTrack(playerRes.data.id))
         } catch (e) {
-            console.error('Error: ', e)
+            dispatch(addMessage(`Music service is not responding`, 'warning'))
         }
     }
 }
